@@ -24,6 +24,11 @@ class MainActivity : Activity() {
     private var customView: View? = null
     private var customCallback: WebChromeClient.CustomViewCallback? = null
 
+    // User-Agent حديث (Chrome موبايل) عشان يوتيوب ما يعرض "متصفح غير مدعوم" على الأجهزة القديمة
+    private val USER_AGENT =
+        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) " +
+            "Chrome/124.0.0.0 Mobile Safari/537.36"
+
     // الدومينات المسموحة فقط. أي شي ثاني ينمنع.
     private val allowedHosts = listOf(
         "youtube.com", "youtube-nocookie.com", "ytimg.com",
@@ -67,6 +72,7 @@ class MainActivity : Activity() {
             allowContentAccess = false
             mixedContentMode = WebSettings.MIXED_CONTENT_NEVER_ALLOW
             cacheMode = WebSettings.LOAD_DEFAULT
+            userAgentString = USER_AGENT
         }
         CookieManager.getInstance().setAcceptCookie(true)
 
